@@ -1,64 +1,88 @@
 <!DOCTYPE html>
-<html lang= "en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Airline Reservation System</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to Verma Airlines</h1>
+        <h1>Welcome to SkyFly Airlines</h1>
         <nav>
             <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="flightReservation.html">Book a Flight</a></li>
-                <li><a href="customerReservation.html">My Reservations</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Book a Flight</a></li>
+                <li><a href="#">My Reservations</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
         </nav>
+    </header>
 
-        <section class = "booking">
-            <h2>Book a Flight</h2>
-            <form action="#" method="post">
-                <div class="input-group">
-                    <input type="text" id="from" name="from" required>
-                    <label for="from">From</label>
-                </div>
-            
-                <div class="input-group">
-                    <input type="text" id="to" name="to" required>
-                    <label for="to">To</label>
-                </div>
-            
-                <div class="input-group">
-                    <input type="date" id="date" name="date" required>
-                    <label for="date">Departure Date</label>
-                </div>
-            
-                <div class="input-group">
-                    <input type="time" id="time" name="time" required>
-                    <label for="time">Departure Time</label>
-                </div>
-            
-                <div class="input-group">
-                    <select id="class" name="class" required>
-                        <option value="" disabled selected>Select Class</option>
-                        <option value="economy">Economy</option>
-                        <option value="business">Business</option>
-                        <option value="first">First</option>
-                    </select>
-                    <label for="class">Class</label>
-                </div>
-            
-                <button type="submit">Search</button>
-            </form>
-            
-        </section>
+    <!-- Reservation Section -->
+    <section class="booking">
+        <h2>Book Your Flight</h2>
+        <form id="reservationForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
 
-        <footer>
-            <p>&copy; 2025 Verma Airlines</p>
-        </footer>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
 
+            <label for="from">From:</label>
+            <input type="text" id="from" required>
+
+            <label for="to">To:</label>
+            <input type="text" id="to" required>
+
+            <label for="date">Departure Date:</label>
+            <input type="date" id="date" required>
+
+            <button type="submit">Book Flight</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 SkyFly Airlines. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript for form handling and AJAX -->
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const flightFrom = document.getElementById('from').value;
+            const flightTo = document.getElementById('to').value;
+            const departureDate = document.getElementById('date').value;
+
+            // Send data to backend using AJAX
+            fetch('http://localhost:3000/reserve', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    name: name, 
+                    email: email, 
+                    flight_from: flightFrom, 
+                    flight_to: flightTo, 
+                    departure_date: departureDate 
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Reservation Successful!');
+                // You can also reset the form here after submission
+                document.getElementById('reservationForm').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an issue with your reservation.');
+            });
+        });
+    </script>
 </body>
 </html>
