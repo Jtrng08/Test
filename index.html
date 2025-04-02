@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Verma Airlines</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="customerReservation.html">My Reservations</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <section class = "booking">
+            <h2>Book a Flight</h2>
+            <form action="searchResults.html" method="get">
+                <div class="input-group">
+                    <input type="text" id="from" name="from" required>
+                    <label for="from">From</label>
+                </div>
+            
+                <div class="input-group">
+                    <input type="text" id="to" name="to" required>
+                    <label for="to">To</label>
+                </div>
+            
+                <div class="input-group">
+                    <input type="date" id="date" name="date" required>
+                    <label for="date">Departure Date</label>
+                </div>
+            
+                <div class="input-group">
+                    <input type="time" id="time" name="time" required>
+                    <label for="time">Departure Time</label>
+                </div>
+            
+                <div class="input-group">
+                    <select id="class" name="class" required>
+                        <option value="" disabled selected>Select Class</option>
+                        <option value="economy">Economy</option>
+                        <option value="business">Business</option>
+                        <option value="first">First</option>
+                    </select>
+                    <label for="class">Class</label>
+                </div>
+            
+                <button type="submit">Search</button>
+            </form>
+            
+            
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Verma Airlines</p>
+        </footer>
+
+</body>
+</html>
